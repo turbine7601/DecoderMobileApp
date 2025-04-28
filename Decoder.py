@@ -59,11 +59,25 @@ class Decoder:
                     elif j + shift < 0 and text[i] == n[j]:
                         newtext.append(n[(j+shift)%len(n)])
         return "".join(newtext)
-        
-
-
     
-
-
-if __name__ == "main":
-    pass
+    @staticmethod
+    def Atbash(text, lang):
+        nt=[]
+        if lang == 'ru':
+            dict = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+        elif lang == 'en':
+            pass
+        AtbashDict = ''
+        for i in range(-1, (-1*len(dict)-1), -1):
+            AtbashDict += dict[i]
+        AtbashDictUpper = AtbashDict.upper()
+        for v in text:
+            if v.isalpha():
+                if v.islower():
+                    nt.append(AtbashDict[dict.find(v)])
+                elif v.isupper():
+                    nt.append(AtbashDictUpper[dict.upper().find(v)])
+            else:
+                nt.append(v)
+        return ''.join(nt)
+    

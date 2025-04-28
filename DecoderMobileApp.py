@@ -20,12 +20,20 @@ class CaesarView(Screen):
         dlt = self.ids.shift.text or "1" #сдвиг
         self.ids.dtext.text = self.translator(text=txt, shift=dlt)
 
+class AtbashView(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+    def clicked(self):
+        txt = self.ids.text_to_decode.text
+        self.ids.dtext.text = Decoder.Atbash(txt, 'ru')
+
 class MainApp(App):
     def build(self):
         sm = ScreenManager()
         self.title = "Дешифровщик"
         sm.add_widget(MainScreen(name='menu'))
         sm.add_widget(CaesarView(name='caesar'))
+        sm.add_widget(AtbashView(name='atbash'))
         return sm
     
 MainApp().run()

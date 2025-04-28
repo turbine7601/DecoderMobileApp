@@ -11,6 +11,9 @@
         Button:
             text:"открыть дешифровщик Цезаря"
             on_press: app.root.current = 'caesar'
+        Button:
+            text:"открыть дешифровщик Атбаш"
+            on_press: app.root.current = 'atbash'
 
 <CaesarView>
     name:'CaesarView'
@@ -32,6 +35,21 @@
         TextInput:
             id: "shift"
             hint_text:'Shift'
+            multiline:False
+        Button:
+            text:'decode'
+            on_press: root.clicked()
+        Label:
+            text:'decoded text'
+            id:dtext
+
+<AtbashView>
+    name: 'AtbashView'
+    BoxLayout:
+        orientation: 'vertical'
+        TextInput:
+            id: 'text_to_decode'
+            hint_text: 'Text'
             multiline:False
         Button:
             text:'decode'
