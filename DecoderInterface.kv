@@ -1,0 +1,41 @@
+#:kivy 2.3
+
+<ScreenManager>
+    MainScreen:
+    CaesarView:
+
+<MainScreen>
+    name:'MainScreen'
+    BoxLayout:
+        orientation: 'vertical'
+        Button:
+            text:"открыть дешифровщик Цезаря"
+            on_press: app.root.current = 'caesar'
+
+<CaesarView>
+    name:'CaesarView'
+    BoxLayout:
+        orientation:'vertical'
+        BoxLayout:
+            orientation:'horizontal'
+            Button:
+                text:"Вернуться"
+                on_press: app.root.current = 'menu'
+            Image:
+                source: "Images/caesar.webp"
+                allow_stretch: True
+                keep_ratio: True
+        TextInput:
+            id: "text_to_decode"
+            hint_text:'Text'
+            multiline:False
+        TextInput:
+            id: "shift"
+            hint_text:'Shift'
+            multiline:False
+        Button:
+            text:'decode'
+            on_press: root.clicked()
+        Label:
+            text:'decoded text'
+            id:dtext
