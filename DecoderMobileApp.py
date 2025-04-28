@@ -23,9 +23,9 @@ class CaesarView(Screen):
 class MainApp(App):
     def build(self):
         sm = ScreenManager()
+        self.title = "Дешифровщик"
         sm.add_widget(MainScreen(name='menu'))
         sm.add_widget(CaesarView(name='caesar'))
         return sm
     
-
 MainApp().run()
