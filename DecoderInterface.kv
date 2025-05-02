@@ -36,6 +36,12 @@
             id: shift
             hint_text:'Shift'
             multiline:False
+        BoxLayout:
+            orientation:'horizontal'
+            Label:
+                text: 'Русский'
+            CheckBox:
+                id: rus
         Button:
             text:'decode'
             on_press: root.clicked()
