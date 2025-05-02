@@ -18,7 +18,10 @@ class CaesarView(Screen):
     def clicked(self):
         txt = self.ids.text_to_decode.text #текст для расшифровки
         dlt = self.ids.shift.text or "1" #сдвиг
-        self.ids.dtext.text = self.translator(text=txt, shift=dlt)
+        if not self.ids.rus.active:
+            self.ids.dtext.text = Decoder.decode_caesar(text=txt, shift=dlt)
+        else:
+            self.ids.dtext.text = Decoder.decode_caesar_ru(text=txt, shift=dlt)
 
 class AtbashView(Screen):
     def __init__(self, **kwargs):
@@ -26,6 +29,7 @@ class AtbashView(Screen):
     def clicked(self):
         txt = self.ids.text_to_decode.text
         self.ids.dtext.text = Decoder.Atbash(txt, 'ru')
+        
 
 class MainApp(App):
     def build(self):
