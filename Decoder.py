@@ -6,7 +6,7 @@ class Decoder:
     @staticmethod    
     def decode_caesar(text:str, shift:int, *args):
         newtext = ''
-        if not str(shift.isdigit):
+        if not str(shift.isdigit()):
             shift = -1
         else:
             shift = int(shift)-2*int(shift)
@@ -17,7 +17,7 @@ class Decoder:
                 if i.islower():
                     if ord(i)+d > ord('z'):
                         newtext += chr((ord(i)+d)-26)
-                    elif ord(i)+d < ord('A'):
+                    elif ord(i)+d < ord('a'):
                         newtext += chr((ord(i)+d)+26)
                     else:
                         newtext += chr(ord(i)+d)
@@ -36,7 +36,7 @@ class Decoder:
     def decode_caesar_ru(text, shift, *args):
         newtext, n = [], ""
 
-        if not str(shift.isdigit):
+        if not str(shift.isdigit()):
             shift = -1
         else:
             shift = int(shift)-2*int(shift)
