@@ -57,6 +57,12 @@
             id: text_to_decode
             hint_text: 'Text'
             multiline:False
+        BoxLayout:
+            orientation:'horizontal'
+            Label:
+                text: 'Русский'
+            CheckBox:
+                id: rus
         Button:
             text:'decode'
             on_press: root.clicked()
