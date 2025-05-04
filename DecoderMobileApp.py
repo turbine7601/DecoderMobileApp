@@ -28,7 +28,10 @@ class AtbashView(Screen):
         super().__init__(**kwargs)
     def clicked(self):
         txt = self.ids.text_to_decode.text
-        self.ids.dtext.text = Decoder.Atbash(txt, 'ru')
+        if not self.ids.rus.active:
+            self.ids.dtext.text = Decoder.Atbash(txt, 'en')
+        else:
+            self.ids.dtext.text = Decoder.Atbash(txt, 'ru')
         
 
 class MainApp(App):
