@@ -5,7 +5,7 @@ class Decoder:
         print(text)
     @staticmethod    
     def decode_caesar(text:str, shift:int, *args):
-        newtext = ''
+        newtext = ""
         if not str(shift.isdigit()):
             shift = -1
         else:
@@ -15,16 +15,16 @@ class Decoder:
             if i.isalpha():
                 d = shift % 26
                 if i.islower():
-                    if ord(i)+d > ord('z'):
+                    if ord(i)+d > ord("z"):
                         newtext += chr((ord(i)+d)-26)
-                    elif ord(i)+d < ord('a'):
+                    elif ord(i)+d < ord("a"):
                         newtext += chr((ord(i)+d)+26)
                     else:
                         newtext += chr(ord(i)+d)
                 else:
-                    if ord(i)+d > ord('Z'):
+                    if ord(i)+d > ord("Z"):
                         newtext += chr((ord(i)+d)-26)
-                    elif ord(i)+d < ord('A'):
+                    elif ord(i)+d < ord("A"):
                         newtext += chr((ord(i)+d)+26)
                     else:
                         newtext += chr(ord(i)+d)
@@ -63,11 +63,11 @@ class Decoder:
     @staticmethod
     def Atbash(text, lang):
         nt=[]
-        if lang == 'ru':
-            dict = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
-        elif lang == 'en':
-            pass
-        AtbashDict = ''
+        if lang == "ru":
+            dict = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+        elif lang == "en":
+            dict = 'abcdefghijklmnopqrstuvwxyz'
+        AtbashDict = ""
         for i in range(-1, (-1*len(dict)-1), -1):
             AtbashDict += dict[i]
         AtbashDictUpper = AtbashDict.upper()
@@ -79,5 +79,41 @@ class Decoder:
                     nt.append(AtbashDictUpper[dict.upper().find(v)])
             else:
                 nt.append(v)
-        return ''.join(nt)
+        return "".join(nt)
     
+    @staticmethod
+    def Vignere(text, key, lang, mode='decrypt'):
+        if lang == "ru":
+            dict = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+        elif lang == "en":
+            dict = 'abcdefghijklmnopqrstuvwxyz'
+        dictUp = dict.upper()
+
+        nkey = (key*(len(text)//len(key)+1))[:len(text)]
+
+        nt = []
+        if mode == "decrypt":
+            for i in range(len(text)):
+                if text[i].isalpha():
+                    if text[i].islower():
+                        shift = (dict.find(text[i])-dict.find(nkey[i]))%len(dict)
+                        nt.append(dict[shift])
+                    else:
+                        shift = (dictUp.find(text[i])-dict.find(nkey[i].upper()))%len(dict)
+                        nt.append(dictUp[shift])
+                else:
+                    nt.append(text[i])
+
+        elif mode == 'encrypt':
+            for i in range(len(text)):
+                if text[i].isalpha():
+                    if text[i].islower():
+                        shift = (dict.find(text[i])+dict.find(nkey[i]))%len(dict)
+                        nt.append(dict[shift])
+                    else:
+                        shift = (dictUp.find(text[i])+dict.find(nkey[i].upper()))%len(dict)
+                        nt.append(dictUp[shift])
+                else:
+                    nt.append(text[i])
+
+        return "".join(nt)
