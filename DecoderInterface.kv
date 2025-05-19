@@ -54,7 +54,14 @@
                     root.manager.transition.direction = "right"
                     root.manager.current = "menu"
         Label:
-            text:"   Версия:\n  v.1\n   Создатели:\n  Тимофеев Павел\n  Бикасов Борис"
+            text:"   [b]Версия[/b]:\n       [i]v.1[/i]"
+            markup: True
+            text_size: self.size
+            halign: 'left'
+            valign: 'top'
+        Label:
+            text:"   [b]Создатели[/b]:\n       [i]Тимофеев Павел\n       Бикасов Борис[/i]"
+            markup: True
             text_size: self.size
             halign: 'left'
             valign: 'top'
