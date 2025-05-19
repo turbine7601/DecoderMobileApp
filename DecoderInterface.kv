@@ -1,8 +1,20 @@
 #:kivy 2.3
 
+<BackgroundColor@Widget>
+    background_color: 1, 1, 1, 1
+    canvas.before:
+        Color:
+            rgba: root.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
 <ScreenManager>
     MainScreen:
     CaesarView:
+    AtbashView:
+    VignereView:
+    InfoScreen:
 
 <MainScreen>
     name:"MainScreen"
@@ -23,6 +35,30 @@
             on_press: 
                 root.manager.transition.direction = "left"
                 root.manager.current = "vignere"
+        Button:
+            text:"информация"
+            on_press:
+                root.manager.transition.direction = "left"
+                root.manager.current = "info"
+        
+
+<InfoScreen>
+    name:"InfoScreen"
+    BoxLayout:
+        orientation:"vertical"
+        BoxLayout:
+            orientation:"horizontal"
+            Button:
+                text:"Вернуться"
+                on_press: 
+                    root.manager.transition.direction = "right"
+                    root.manager.current = "menu"
+        Label:
+            text:"   Версия:\n  v.1\n   Создатели:\n  Тимофеев Павел\n  Бикасов Борис"
+            text_size: self.size
+            halign: 'left'
+            valign: 'top'
+
 
 <CaesarView>
     name:"CaesarView"

@@ -9,6 +9,10 @@ class MainScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+class InfoScreen(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
 class CaesarView(Screen):
     translator = Decoder.decode_caesar
     def __init__(self, **kwargs):
@@ -58,6 +62,7 @@ class MainApp(App):
         sm.add_widget(CaesarView(name="caesar"))
         sm.add_widget(AtbashView(name="atbash"))
         sm.add_widget(VignereView(name="vignere"))
+        sm.add_widget(InfoScreen(name="info"))
 
         return sm
     
