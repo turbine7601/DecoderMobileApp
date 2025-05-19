@@ -1,3 +1,5 @@
+import base64
+
 
 class Decoder:
     @staticmethod
@@ -117,3 +119,10 @@ class Decoder:
                     nt.append(text[i])
 
         return "".join(nt)
+    
+    @staticmethod
+    def BASE64(text, mode="d"):
+        if mode == "d":
+            return base64.b64decode(text)
+        else:
+            return base64.b64encode(bytes(text, "utf-8")).decode("utf-8")

@@ -37,6 +37,16 @@ class AtbashView(Screen):
         else:
             self.ids.dtext.text = Decoder.Atbash(txt, "ru")
 
+class Base64View(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+    def clicked(self):
+        txt = self.ids.text_to_decode.text
+        if self.ids.mode.active:
+            self.ids.dtext.text = Decoder.BASE64(txt, "e")
+        else:
+            self.ids.dtext.text = Decoder.BASE64(txt)
+
 class VignereView(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -63,6 +73,7 @@ class MainApp(App):
         sm.add_widget(AtbashView(name="atbash"))
         sm.add_widget(VignereView(name="vignere"))
         sm.add_widget(InfoScreen(name="info"))
+        sm.add_widget(Base64View(name="base64"))
 
         return sm
     

@@ -15,6 +15,7 @@
     AtbashView:
     VignereView:
     InfoScreen:
+    Base64View:
 
 <MainScreen>
     name:"MainScreen"
@@ -35,6 +36,11 @@
             on_press: 
                 root.manager.transition.direction = "left"
                 root.manager.current = "vignere"
+        Button:
+            text:"открыть дешифровщик Base64"
+            on_press: 
+                root.manager.transition.direction = "left"
+                root.manager.current = "base64"
         Button:
             text:"информация"
             on_press:
@@ -124,6 +130,34 @@
                 text: "Русский"
             CheckBox:
                 id: rus
+        Button:
+            text:"Расшифровать"
+            on_press: root.clicked()
+        Label:
+            text:"Расшифрованный текст"
+            id:dtext
+
+<Base64View>
+    name: "Base64View"
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            orientation:"horizontal"
+            Button:
+                text:"Вернуться"
+                on_press:
+                    root.manager.transition.direction = "right" 
+                    root.manager.current = "menu"
+        TextInput:
+            id: text_to_decode
+            hint_text: "Текст"
+            multiline:False
+        BoxLayout:
+            orientation:"horizontal"
+            Label:
+                text: "Шифровать"
+            CheckBox:
+                id: mode
         Button:
             text:"Расшифровать"
             on_press: root.clicked()
