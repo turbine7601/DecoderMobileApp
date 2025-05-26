@@ -123,6 +123,6 @@ class Decoder:
     @staticmethod
     def BASE64(text, mode="d"):
         if mode == "d":
-            return base64.b64decode(text)
+            return base64.b64decode(text.encode("utf-8")).decode("utf-8")
         else:
             return base64.b64encode(bytes(text, "utf-8")).decode("utf-8")
